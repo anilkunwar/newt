@@ -5,6 +5,11 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 #include "CoupledPotentialPoisson.h"
+/**
+ * This function defines the valid parameters for
+ * this Kernel and their default values
+ */
+registerMooseObject("newtApp", CoupledPotentialPoisson);
 
 template <>
 InputParameters
