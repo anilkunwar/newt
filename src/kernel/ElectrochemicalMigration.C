@@ -6,6 +6,11 @@
 /****************************************************************/
 #include "ElectrochemicalMigration.h"
 
+/**
+ * This function defines the valid parameters for
+ * this Kernel and their default values
+ */
+registerMooseObject("newtApp", ElectrochemicalMigration);
 template <>
 InputParameters
 validParams<ElectrochemicalMigration>()
