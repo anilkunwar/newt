@@ -18,6 +18,7 @@ validParams<CoupledPotentialPoisson>()
   InputParameters params = validParams<Kernel>();
   params.addClassDescription(
       "Add in CoupledPotentialPoisson");
+// conductivity is the function of non-conserved phase field order parameter	
   params.addParam<MaterialPropertyName>("sigma_name","Effective conductivity");
   params.addParam<MaterialPropertyName>("sigma_M_name",0,"set as zero in this case");
   params.addRequiredCoupledVar(
