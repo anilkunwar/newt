@@ -18,8 +18,9 @@ validParams<ButlerVolmerKinetics>()
   InputParameters params = validParams<Kernel>();
   params.addClassDescription(
       "Add in ButlerVolmerKinetics");
+// the primary variable u is eta 
   params.addRequiredCoupledVar(
-      "op", "order parameter eta as coupled variable");
+      "c_pot", "potential as coupled variable");
   params.addRequiredCoupledVar(
           "mu", "chemical potential as coupled variable 2");
   params.addRequiredParam<MaterialPropertyName>(
@@ -29,15 +30,15 @@ validParams<ButlerVolmerKinetics>()
 
 ButlerVolmerKinetics::ButlerVolmerKinetics(const InputParameters & parameters)
 : DerivativeMaterialInterface<Kernel>(parameters),
-	_op_var(coupled("op")),
-	_op(coupledValue("op")),
+	_c_pot_var(coupled("c_pot")),
+	_c_pot(coupledValue("c_pot")),
   _mu_var(coupled("mu")),
 	_mu(coupledValue("mu")),
   _F(getMaterialProperty<Real>("f_name")),
   //_dFe(getMaterialPropertyDerivative<Real>("f_name", _var.name())),
   _dF(getMaterialPropertyDerivative<Real>("f_name", _var.name())),
   _dF_mu(getMaterialPropertyDerivative<Real>("f_name", getVar("mu", 0)->name())),
-	_dF_op(getMaterialPropertyDerivative<Real>("f_name", getVar("op", 0)->name()))
+	_dF_c_pot(getMaterialPropertyDerivative<Real>("f_name", getVar("c_pot", 0)->name()))
 {
 }
 
@@ -56,8 +57,8 @@ ButlerVolmerKinetics::computeQpJacobian()
 Real
 ButlerVolmerKinetics::computeQpOffDiagJacobian(unsigned int jvar)
 {
-   if (jvar == _op_var)
-	   return _dF_op[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+   if (jvar == _c_pot_var)
+	   return _dF_c_pot[_qp]*_phi[_j][_qp]*_test[_i][_qp];
     else if (jvar == _mu_var)
       return _dF_mu[_qp]*_phi[_j][_qp]*_test[_i][_qp];
 	else
