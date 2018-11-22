@@ -24,16 +24,16 @@ protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-  unsigned int _op_var;
-  const VariableValue & _op;
-  unsigned int _mu_var;
-  const VariableValue & _mu;
+  unsigned int _c_pot_var;
+  const VariableValue & _c_pot;
+  unsigned int _c_eta_var;
+  const VariableValue & _c_eta;
   /// Mobility
   const MaterialProperty<Real> & _F;
   //const MaterialProperty<Real> & _dFe;
   const MaterialProperty<Real> & _dF;
-  const MaterialProperty<Real> & _dF_mu;
-  const MaterialProperty<Real> & _dF_op;
+  const MaterialProperty<Real> & _dF_c_eta;
+  const MaterialProperty<Real> & _dF_c_pot;
   /// Interfacial parameter
 };
 
