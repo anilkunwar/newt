@@ -23,8 +23,10 @@ validParams<CoupledPotentialPoisson>()
   params.addParam<MaterialPropertyName>("sigma_M_name",0,"set as zero in this case");
   params.addRequiredCoupledVar(
       "op", "ordered parameter eta variable");
+// sigma is a function of eta, hence the name of the kernel is CoupledPotentialPoisson
   params.addRequiredCoupledVar(
       "mu", "chemical potential");
+//mu is the independent variable for grand potential based phase field analysis
   return params;
 }
 
