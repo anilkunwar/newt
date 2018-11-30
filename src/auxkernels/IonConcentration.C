@@ -64,5 +64,9 @@ IonConcentration::computeValue()
   // Note that getting a particular component of a gradient is done using the
   // parenthesis operator
   //return -(_permeability[_qp] / _viscosity[_qp]) * _pressure_gradient[_qp](_component);
+  // The ionconc is related to the grand potential of the liquid
+  // fl=ul-A*log(1+exp((w-el)/A)) (unit of free energy density)
+  // c_M^+ = 'h dFl:=D[f1,w]'
+  // c_M^+ is obtained from the material block
   return _ionconc[_qp] ;
 }
