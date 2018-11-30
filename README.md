@@ -1,6 +1,6 @@
 newt
 =====
-newt refers to codes on Non rEactive WetTing. 
+newt refers to codes on Numerical works in Electrochemistry and Wetting Theory. 
 
 "Fork newt" to create a new MOOSE-based application.
 
