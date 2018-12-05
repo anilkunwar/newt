@@ -37,6 +37,8 @@ validParams<IonConvection>()
   //params.addParam<MaterialPropertyName>("ion_conc","Concentration of ion in the electrolyte");
   params.addCoupledVar(
 	"cm", 0, "Ion concentration defined as an auxvariabe.");
+	// gradient of material property is difficult to define, so we define it as an auxvariable
+	// https://groups.google.com/forum/#!topic/moose-users/LVKXvpilvT0
   return params;
 }
 
