@@ -129,7 +129,7 @@ IonConvection::computeQpOffDiagJacobian(unsigned int jvar)
   } 
   if (jvar == _c_ion_var)
   {
-    _test[_i][_qp] * (_velocity * _grad_phi[_j][_qp][_qp]);
+    _test[_i][_qp] * (_velocity * _grad_phi[_j][_qp]);
   } 
   else
   {
