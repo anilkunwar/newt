@@ -8,8 +8,8 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #include "IonConvection.h"
-# This kernel solves the source term -v.grad_cion in transport equation
-# cion is obtained from the materials block
+// This kernel solves the source term -v.grad_cion in transport equation
+// cion is obtained from the materials block
 
 /**
  * This function defines the valid parameters for
