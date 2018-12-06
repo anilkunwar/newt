@@ -100,3 +100,6 @@ IonConvection::computeQpJacobian()
  // return _test[_i][_qp] * (vec * _grad_phi[_j][_qp]);
  return 0;
 }
+
+// an illustrative description of Jacobian formulation in MOOSE framework
+// https://www.mooseframework.org/application_development/jacobian_definition.html
