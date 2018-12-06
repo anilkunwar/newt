@@ -60,6 +60,7 @@ IonConvection::IonConvection(const InputParameters & parameters)
     	_v_vel_var(coupled("v")),
 	_w_vel_var(coupled("w")),
         _c_ion_var(coupled("cm")),
+        _c_ion_var(coupledValue("cm")),
         _grad_c_ion(coupledGradient("cm"))
         //_c_ion(getMaterialProperty<Real>("ion_conc"))
 {
@@ -110,21 +111,29 @@ IonConvection::computeQpJacobian()
 //{
  // return 0;
 //}
-
+// Do we need to write _vector_phi[_j][_qp] instead of _phi[_j][_qp] for vector variable
 Real
 IonConvection::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (jvar == _var2_num)
+  if (jvar == _u_vel_var)
   {
-    return _phi[_j][_qp] * _test[_i][_qp];
+    return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp];
   } 
-  else if (jvar == _var2_num)
+  else if (jvar == _v_vel_var)
  {
-    return _phi[_j][_qp] * _test[_i][_qp];
+     return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp];
+  } 
+   if (jvar == _w_vel_var)
+  {
+     return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp];
+  } 
+  if (jvar == _c_ion_var)
+  {
+    _test[_i][_qp] * (_velocity * _grad_phi[_j][_qp][_qp]);
   } 
   else
   {
     return 0;
   }
 }
-© 2018 GitHub, Inc.
+
