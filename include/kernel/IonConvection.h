@@ -87,8 +87,7 @@ protected:
   const VariableValue & _v_vel;
   const VariableValue & _w_vel;
   const VariableValue & _c_ion;
-  /// Gradient of c_ion variable
-  const VariableGradient & _grad_c_ion;
+  
 
   /// Coupled velocity identifiers
  // unsigned int _x_vel_var;
@@ -99,6 +98,8 @@ protected:
   unsigned int _v_vel_var;
   unsigned int _w_vel_var;
   unsigned int _c_ion_var;
+  /// Gradient of c_ion variable
+  const VariableGradient & _grad_c_ion;
 };
 
 #endif // IONCONVECTION_H
