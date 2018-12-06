@@ -101,5 +101,5 @@ IonConvection::computeQpJacobian()
  return 0;
 }
 
-// an illustrative description of Jacobian formulation in MOOSE framework
+// an illustrative description of Jacobian formulation for vectors and scalars in MOOSE framework
 // https://www.mooseframework.org/application_development/jacobian_definition.html
