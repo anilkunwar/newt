@@ -112,20 +112,21 @@ IonConvection::computeQpJacobian()
  // return 0;
 //}
 // Do we need to write _vector_phi[_j][_qp] instead of _phi[_j][_qp] for vector variable
+// the output should be a scalar variable , and so components 0,1,2 of _grad_c_ion[_qp] must be defined 
 Real
 IonConvection::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _u_vel_var)
   {
-    return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp];
+    return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp](0);
   } 
   else if (jvar == _v_vel_var)
  {
-     return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp];
+     return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp](1);
   } 
    else if (jvar == _w_vel_var)
   {
-     return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp];
+     return _phi[_j][_qp] * _test[_i][_qp]* _grad_c_ion[_qp](2);
   } 
   else if (jvar == _c_ion_var)
   {
