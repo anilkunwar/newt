@@ -117,7 +117,11 @@ IonConvection::computeQpOffDiagJacobian(unsigned int jvar)
   if (jvar == _var2_num)
   {
     return _phi[_j][_qp] * _test[_i][_qp];
-  }
+  } 
+  else if (jvar == _var2_num)
+ {
+    return _phi[_j][_qp] * _test[_i][_qp];
+  } 
   else
   {
     return 0;
