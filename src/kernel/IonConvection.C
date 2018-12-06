@@ -103,3 +103,24 @@ IonConvection::computeQpJacobian()
 
 // an illustrative description of Jacobian formulation for vectors and scalars in MOOSE framework
 // https://www.mooseframework.org/application_development/jacobian_definition.html
+// https://github.com/idaholab/moose/blob/devel/test/src/kernels/CoupledKernelValueTest.C
+//https://groups.google.com/forum/#!msg/moose-users/x35Wk62O6dU/qctLF9bhAgAJ
+Real
+CoupledKernelValueTest::precomputeQpJacobian()
+{
+  return 0;
+}
+
+Real
+CoupledKernelValueTest::computeQpOffDiagJacobian(unsigned int jvar)
+{
+  if (jvar == _var2_num)
+  {
+    return _phi[_j][_qp] * _test[_i][_qp];
+  }
+  else
+  {
+    return 0;
+  }
+}
+© 2018 GitHub, Inc.
