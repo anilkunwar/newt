@@ -105,14 +105,14 @@ IonConvection::computeQpJacobian()
 // https://www.mooseframework.org/application_development/jacobian_definition.html
 // https://github.com/idaholab/moose/blob/devel/test/src/kernels/CoupledKernelValueTest.C
 //https://groups.google.com/forum/#!msg/moose-users/x35Wk62O6dU/qctLF9bhAgAJ
-Real
-CoupledKernelValueTest::precomputeQpJacobian()
-{
-  return 0;
-}
+//Real
+//IonConvection::computeQpJacobian()
+//{
+ // return 0;
+//}
 
 Real
-CoupledKernelValueTest::computeQpOffDiagJacobian(unsigned int jvar)
+IonConvection::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _var2_num)
   {
