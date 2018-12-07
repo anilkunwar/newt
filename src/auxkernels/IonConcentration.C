@@ -28,6 +28,10 @@ validParams<IonConcentration>()
 
   // Add a "coupling paramater" to get a variable from the input file.
   params.addRequiredCoupledVar("chem_pot", "chemical potential as coupled variable.");
+  params.addRequiredParam<MaterialPropertyName>("ion_conc","The diffusivity used with the kernel");
+  //params.addRequiredParam<MaterialPropertyName>("ion-concentration","The diffusivity used with the kernel");
+  // moose issues the error "*** ERROR *** Invalid parameter name: 'ion-concentration' ...", so parameter written as ion_conc
+
 
   return params;
 }
@@ -52,7 +56,8 @@ IonConcentration::IonConcentration(const InputParameters & parameters)
     // Set reference to the viscosity MaterialProperty.
     // Only AuxKernels operating on Elemental Auxiliary Variables can do this
     //_viscosity(getMaterialProperty<Real>("viscosity"))
-    _ionconc(getMaterialProperty<Real>("ion-concentration"))
+    //_ionconc(getMaterialProperty<Real>("ion-concentration"))
+    _ionconc(getMaterialProperty<Real>("ion_conc"))
 {
 }
 
