@@ -60,7 +60,7 @@ IonConvection::IonConvection(const InputParameters & parameters)
     	_v_vel_var(coupled("v")),
 	_w_vel_var(coupled("w")),
         _c_ion_var(coupled("cm")),
-        _c_ion_var(coupledValue("cm")),
+        //_c_ion_var(coupledValue("cm")),
         _grad_c_ion(coupledGradient("cm"))
         //_c_ion(getMaterialProperty<Real>("ion_conc"))
 {
@@ -131,7 +131,7 @@ IonConvection::computeQpOffDiagJacobian(unsigned int jvar)
   } 
   else if (jvar == _c_ion_var)
   {
-    _test[_i][_qp] * (_velocity * _grad_phi[_j][_qp]);
+   return _test[_i][_qp] * (_velocity * _grad_phi[_j][_qp]);
   } 
   else
   {
