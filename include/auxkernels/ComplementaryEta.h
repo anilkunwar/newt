@@ -7,25 +7,25 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#ifndef IONCONCENTRATION_H
-#define IONCONCENTRATION_H
+#ifndef COMPLEMENTARYETA_H
+#define COMPLEMENTARYETA_H
 
 #include "AuxKernel.h"
 
 // Forward Declarations
-class IonConcentration;
+class ComplementaryEta;
 
 template <>
-InputParameters validParams<IonConcentration>();
+InputParameters validParams<ComplementaryEta>();
 
 /**
  * Auxiliary kernel responsible for computing the Darcy velocity given
  * several fluid properties and the pressure gradient.
  */
-class IonConcentration : public AuxKernel
+class ComplementaryEta : public AuxKernel
 {
 public:
-  IonConcentration(const InputParameters & parameters);
+  ComplementaryEta(const InputParameters & parameters);
 
 protected:
   /**
@@ -39,15 +39,15 @@ protected:
   ///int _component;
 
   /// Value of the coupled variable
-  const VariableValue & _chempot;
+  const VariableValue & _eta;
 
   /// The gradient of a coupled variable
-  const VariableGradient & _chempot_gradient;
+  const VariableGradient & _eta_gradient;
 
   /// Holds the permeability and viscosity from the material system
   ///const MaterialProperty<Real> & _permeability;
   ///const MaterialProperty<Real> & _viscosity;
-  const MaterialProperty<Real> & _ionconc;
+  //const MaterialProperty<Real> & _ionconc;
 };
 
-#endif // IONCONCENTRATION_H
+#endif // COMPLEMENTARYETA_H
