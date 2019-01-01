@@ -27,7 +27,7 @@ validParams<ComplementaryEta>()
   //params.addRequiredParam<MooseEnum>("component", component, "The desired component of velocity.");
 
   // Add a "coupling paramater" to get a variable from the input file.
-  params.addRequiredCoupledVar("eta", "chemical potential as coupled variable.");
+  params.addRequiredCoupledVar("eta", "order parameter as coupled variable.");
   //params.addRequiredParam<MaterialPropertyName>("ion_conc","The diffusivity used with the kernel");
   //params.addRequiredParam<MaterialPropertyName>("ion-concentration","The diffusivity used with the kernel");
   // moose issues the error "*** ERROR *** Invalid parameter name: 'ion-concentration' ...", so parameter written as ion_conc
