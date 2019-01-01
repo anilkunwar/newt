@@ -47,7 +47,7 @@ ComplementaryEta::ComplementaryEta(const InputParameters & parameters)
     _eta(coupledValue("eta")),
 
     // Get the gradient of the variable
-    _eta_gradient(coupledGradient("eta")),
+    _eta_gradient(coupledGradient("eta"))
 
     // Set reference to the permeability MaterialProperty.
     // Only AuxKernels operating on Elemental Auxiliary Variables can do this
