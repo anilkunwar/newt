@@ -48,7 +48,10 @@ protected:
     /// Coupled variable for the v variable
   const VariableValue & _v;
 
-   /// Variable gradient for temperature
+  /// Will hold 0, 1, or 2 corresponding to x, y, or z.
+  const int _component;
+  
+  /// Variable gradient for temperature
   const VariableGradient & _grad_v;
 
   /// Variable gradient for temperature
