@@ -63,6 +63,8 @@ MultiSurfaceTension::MultiSurfaceTension(const InputParameters & parameters) :
 Real
 MultiSurfaceTension::computeQpResidual()
 {
+  //adds the term F_T= w_i*grad_c_i
+ // Reference: Yurkiv et al, 2018, Langmuir (https://pubs.acs.org/doi/abs/10.1021/acs.langmuir.8b01443)
   //return _kc *(_cs[_qp]- _u[_qp]) * _test[_i][_qp];
   //return -_kc * _u[_qp] * _test[_i][_qp];
   return -_sigmazero * _gammafn[_qp] * _grad_v[_qp] * _test[_i][_qp];
