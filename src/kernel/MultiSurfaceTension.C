@@ -67,7 +67,8 @@ MultiSurfaceTension::computeQpResidual()
  // Reference: Yurkiv et al, 2018, Langmuir (https://pubs.acs.org/doi/abs/10.1021/acs.langmuir.8b01443)
   //return _kc *(_cs[_qp]- _u[_qp]) * _test[_i][_qp];
   //return -_kc * _u[_qp] * _test[_i][_qp];
-  return -_sigmazero * _gammafn[_qp] * _grad_v[_qp] * _test[_i][_qp];
+  RealVectorValue comp_gradient =   _grad_v[_qp];
+  return -_sigmazero * _gammafn[_qp] * comp_gradient* _test[_i][_qp];
 }
 
 Real
@@ -91,6 +92,7 @@ MultiSurfaceTension::computeQpOffDiagJacobian(unsigned int jvar)
 //}
 {
   if (jvar == _v_var)
-    return -_sigmazero * _gammafn[_qp] * _grad_phi[_j][_qp] * _test[_i][_qp];
+    RealVectorValue dcomp_gradient =   _grad_phi[_j][_qp] ;
+    return -_sigmazero * _gammafn[_qp] * dcomp_gradient * _test[_i][_qp];
   return 0.0;
 }
