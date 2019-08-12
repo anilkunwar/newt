@@ -22,6 +22,12 @@ InputParameters validParams<MultiSurfaceTension>()
   params.addClassDescription("Implements a source term proportional to the value of a coupled "
                              "variable. Weak form: $(\\psi_i, -\\sigma v)$.");
   //params.addRequiredCoupledVar("Temperature", "The variable representing the temperature.");
+  // Declare the options for a MooseEnum.
+  // These options will be presented to the user in Peacock and if something other than these
+  // options is in the input file an error will be printed
+  MooseEnum component("x y z");
+  // Use the MooseEnum to add a parameter called "component"
+  params.addRequiredParam<MooseEnum>("component", component, "The desired component of composition gradient.");
   params.addRequiredCoupledVar("v", "The coupled variable which provides the force");
   // Add a required parameter.  If this isn't provided in the input file MOOSE will error.
   //params.addRequiredParam<MaterialPropertyName>("c_sat", "The saturated solubility used with the kernel");
@@ -47,6 +53,8 @@ MultiSurfaceTension::MultiSurfaceTension(const InputParameters & parameters) :
     _v_var(coupled("v")),
     // Save off the coupled value for use in Residual 
     _v(coupledValue("v")),
+   // Automatically convert the MooseEnum to an integer
+    _component(getParam<MooseEnum>("component")),
     _grad_v(coupledGradient("v")),
     // Couple to the gradient of the pressure
     //_grad_T(coupledGradient("Temperature")),
@@ -67,8 +75,8 @@ MultiSurfaceTension::computeQpResidual()
  // Reference: Yurkiv et al, 2018, Langmuir (https://pubs.acs.org/doi/abs/10.1021/acs.langmuir.8b01443)
   //return _kc *(_cs[_qp]- _u[_qp]) * _test[_i][_qp];
   //return -_kc * _u[_qp] * _test[_i][_qp];
-  RealVectorValue comp_gradient =   _grad_v[_qp];
-  return -_sigmazero * _gammafn[_qp] * comp_gradient* _test[_i][_qp];
+ // RealVectorValue comp_gradient =   _grad_v[_qp](_component);
+  return -_sigmazero * _gammafn[_qp] * _grad_v[_qp](_component)* _test[_i][_qp];
 }
 
 Real
@@ -92,7 +100,7 @@ MultiSurfaceTension::computeQpOffDiagJacobian(unsigned int jvar)
 //}
 {
   if (jvar == _v_var)
-    RealVectorValue dcomp_gradient =   _grad_phi[_j][_qp] ;
-    return -_sigmazero * _gammafn[_qp] * dcomp_gradient * _test[_i][_qp];
+    //RealVectorValue dcomp_gradient =   _grad_phi[_j][_qp](_component) ;
+    return -_sigmazero * _gammafn[_qp] *  _grad_phi[_j][_qp](_component) * _test[_i][_qp];
   return 0.0;
 }
