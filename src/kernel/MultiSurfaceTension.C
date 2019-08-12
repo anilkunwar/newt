@@ -76,7 +76,7 @@ MultiSurfaceTension::computeQpResidual()
   //return _kc *(_cs[_qp]- _u[_qp]) * _test[_i][_qp];
   //return -_kc * _u[_qp] * _test[_i][_qp];
  // RealVectorValue comp_gradient =   _grad_v[_qp](_component);
-  return -_sigmazero * _gammafn[_qp] * _grad_v[_qp](_component)* _test[_i][_qp];
+  return -_sigmazero * _gammafn[_qp] * _grad_v[_qp](_component)* _test[_i][_qp];  // Velocity for Darcy TM tutorial
 }
 
 Real
