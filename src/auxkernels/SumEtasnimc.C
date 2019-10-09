@@ -92,5 +92,5 @@ SumEtasnimc::computeValue()
   // c_M^+ = 'h dFl:=D[f1,w]'
   // c_M^+ is obtained from the material block
   // h_imc^2*(eta_imc1+eta_imc2)+h_sn^3*eta_sn
-  return _prop_h12[_qp]*_prop_h12[_qp]*(_var1[_qp]+_var2[_qp])+_prop_h3[_qp]*_prop_h3[_qp]*_prop_h3[_qp]*_var3[_qp] ;
+  return _prop_h12[_qp]*_prop_h12[_qp]*(_var1[_qp]+_var2[_qp])+1.25*_prop_h3[_qp]*_prop_h3[_qp]*_prop_h3[_qp]*_var3[_qp] ;
 }
