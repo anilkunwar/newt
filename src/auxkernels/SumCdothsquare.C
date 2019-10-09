@@ -53,7 +53,7 @@ SumCdothsquare::SumCdothsquare(const InputParameters & parameters)
     _var1(coupledValue("var1")),
 
     // Get the gradient of the variable
-    _var1_gradient(coupledGradient("var1")),
+    //_var1_gradient(coupledGradient("var1")),
 
     // We can couple in a value from one of our kernels with a call to coupledValueAux
     //_var2(coupledValue("var2")),
