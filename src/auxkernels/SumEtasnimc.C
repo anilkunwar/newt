@@ -7,13 +7,13 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#include "SumEtaimc.h"
+#include "SumEtasnimc.h"
 
-registerMooseObject("newtApp", SumEtaimc);
+registerMooseObject("newtApp", SumEtasnimc);
 
 template <>
 InputParameters
-validParams<SumEtaimc>()
+validParams<SumEtasnimc>()
 {
   InputParameters params = validParams<AuxKernel>();
 
@@ -29,7 +29,9 @@ validParams<SumEtaimc>()
   // Add a "coupling paramater" to get a variable from the input file.
   params.addRequiredCoupledVar("var1", "order parameter as coupled variable."); //var1=eta_imc1
   params.addRequiredCoupledVar("var2", "order parameter as coupled variable."); //var2=eta_imc2
-  params.addRequiredParam<MaterialPropertyName>("h_name","Switching function of imc");
+  params.addRequiredCoupledVar("var3", "order parameter as coupled variable."); //var2=eta_sn
+  params.addRequiredParam<MaterialPropertyName>("h12_name","Switching function of imc");
+  params.addRequiredParam<MaterialPropertyName>("h3_name","Switching function of sn");
   //params.addParam<MaterialPropertyName>("h_name","h","Base name for switching function");
   //params.addRequiredParam<MaterialPropertyName>("ion-concentration","The diffusivity used with the kernel");
   // moose issues the error "*** ERROR *** Invalid parameter name: 'ion-concentration' ...", so parameter written as ion_conc
@@ -38,7 +40,7 @@ validParams<SumEtaimc>()
   return params;
 }
 
-SumEtaimc::SumEtaimc(const InputParameters & parameters)
+SumEtasnimc::SumEtasnimc(const InputParameters & parameters)
   : AuxKernel(parameters),
 
     // This will automatically convert the MooseEnum to an integer
@@ -57,6 +59,12 @@ SumEtaimc::SumEtaimc(const InputParameters & parameters)
     // Get the gradient of the variable
     _var2_gradient(coupledGradient("var2")),
 
+    // We can couple in a value from one of our kernels with a call to coupledValueAux
+    _var3(coupledValue("var3")),
+
+    // Get the gradient of the variable
+    _var3_gradient(coupledGradient("var3")),
+
     // Set reference to the permeability MaterialProperty.
     // Only AuxKernels operating on Elemental Auxiliary Variables can do this
     //_permeability(getMaterialProperty<Real>("permeability")),
@@ -66,12 +74,13 @@ SumEtaimc::SumEtaimc(const InputParameters & parameters)
     //_viscosity(getMaterialProperty<Real>("viscosity"))
     //_ionconc(getMaterialProperty<Real>("ion-concentration"))
     //_ionconc(getMaterialProperty<Real>("ion_conc"))
-    _prop_h(getMaterialProperty<Real>("h_name"))
+    _prop_h12(getMaterialProperty<Real>("h12_name")),
+    _prop_h3(getMaterialProperty<Real>("h3_name"))
 {
 }
 
 Real
-SumEtaimc::computeValue()
+SumEtasnimc::computeValue()
 {
   // Access the gradient of the pressure at this quadrature point
   // Then pull out the "component" of it we are looking for (x, y or z)
@@ -82,6 +91,6 @@ SumEtaimc::computeValue()
   // fl=ul-A*log(1+exp((w-el)/A)) (unit of free energy density)
   // c_M^+ = 'h dFl:=D[f1,w]'
   // c_M^+ is obtained from the material block
-  //return _prop_h[_qp]*(_var1[_qp]+_var2[_qp]) ;
-  return _prop_h[_qp]*_prop_h[_qp]*(_var1[_qp]+_var2[_qp]) ;
+  // h_imc^2*(eta_imc1+eta_imc2)+h_sn^3*eta_sn
+  return _prop_h12[_qp]*_prop_h12[_qp]*(_var1[_qp]+_var2[_qp])+_prop_h3[_qp]*_prop_h3[_qp]*_prop_h3[_qp]*_var3[_qp] ;
 }
