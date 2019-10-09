@@ -27,13 +27,13 @@ validParams<SumCdothsquare>()
   //params.addRequiredParam<MooseEnum>("component", component, "The desired component of velocity.");
 
   // Add a "coupling paramater" to get a variable from the input file.
-  params.addRequiredCoupledVar("var1", "order parameter as coupled variable."); //var1=global composition
+  params.addRequiredCoupledVar("var1", "global composition (c) as coupled variable."); //var1=global composition
   //params.addRequiredCoupledVar("var2", "order parameter as coupled variable."); //var2=eta_imc2
   //params.addRequiredCoupledVar("var3", "order parameter as coupled variable."); //var3=eta_sn
   //params.addRequiredCoupledVar("var4", "order parameter as coupled variable."); //var3=eta_sn
   params.addRequiredParam<MaterialPropertyName>("h1_name","Switching function of imc");
   params.addRequiredParam<MaterialPropertyName>("h2_name","Switching function of sn");
-  params.addRequiredParam<MaterialPropertyName>("h3_name","Switching function of sn");
+  params.addRequiredParam<MaterialPropertyName>("h3_name","Switching function of cu");
   //params.addParam<MaterialPropertyName>("h_name","h","Base name for switching function");
   //params.addRequiredParam<MaterialPropertyName>("ion-concentration","The diffusivity used with the kernel");
   // moose issues the error "*** ERROR *** Invalid parameter name: 'ion-concentration' ...", so parameter written as ion_conc
