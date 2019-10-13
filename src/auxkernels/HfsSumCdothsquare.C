@@ -34,7 +34,7 @@ validParams<HfsSumCdothsquare>()
   params.addRequiredParam<MaterialPropertyName>("h1_name","Switching function of imc1");
   params.addRequiredParam<MaterialPropertyName>("h2_name","Switching function of imc2");
   params.addRequiredParam<MaterialPropertyName>("h3_name","Switching function of sn");
-  params.addRequiredParam<MaterialPropertyName>("h3_name","Switching function of cu");
+  params.addRequiredParam<MaterialPropertyName>("h4_name","Switching function of cu");
   //params.addParam<MaterialPropertyName>("h_name","h","Base name for switching function");
   //params.addRequiredParam<MaterialPropertyName>("ion-concentration","The diffusivity used with the kernel");
   // moose issues the error "*** ERROR *** Invalid parameter name: 'ion-concentration' ...", so parameter written as ion_conc
