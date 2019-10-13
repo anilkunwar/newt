@@ -103,5 +103,5 @@ HfsSumCdothsquare::computeValue()
   // c_M^+ = 'h dFl:=D[f1,w]'
   // c_M^+ is obtained from the material block
   // h_imc^2*(eta_imc1+eta_imc2)+h_sn^3*eta_sn
-  return _var1[_qp]*(_prop_h1[_qp]*_prop_h1[_qp]+_prop_h2[_qp]*_prop_h2[_qp]+_prop_h3[_qp]*_prop_h3[_qp]++_prop_h4[_qp]*_prop_h4[_qp]) ;
+  return _var1[_qp]*(_prop_h1[_qp]*_prop_h1[_qp]+_prop_h2[_qp]*_prop_h2[_qp]+_prop_h3[_qp]*_prop_h3[_qp]+_prop_h4[_qp]*_prop_h4[_qp]) ;
 }
