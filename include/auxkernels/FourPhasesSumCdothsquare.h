@@ -71,7 +71,7 @@ protected:
   const MaterialProperty<Real> & _prop_h2;
   const MaterialProperty<Real> & _prop_h3;
   const MaterialProperty<Real> & _prop_h4;
-  const MaterialProperty<Real> & _prop_h4;
+  const MaterialProperty<Real> & _prop_h5;
 };
 
 #endif // FOURPHASESSUMCDOTHSQUARE_H
