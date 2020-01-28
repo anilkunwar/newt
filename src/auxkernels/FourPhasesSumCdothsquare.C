@@ -87,8 +87,8 @@ FourPhasesSumCdothsquare::FourPhasesSumCdothsquare(const InputParameters & param
     _prop_h1(getMaterialProperty<Real>("h1_name")),
     _prop_h2(getMaterialProperty<Real>("h2_name")),
     _prop_h3(getMaterialProperty<Real>("h3_name")),
-    _prop_h4(getMaterialProperty<Real>("h4_name"))
-    _prop_h4(getMaterialProperty<Real>("h5_name"))
+    _prop_h4(getMaterialProperty<Real>("h4_name")),
+    _prop_h5(getMaterialProperty<Real>("h5_name"))
 {
 }
 
