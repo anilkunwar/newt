@@ -1,6 +1,6 @@
  
 #include "RemainderEtaIC.h"
-registerMooseObject("NewtApp", RemainderEtaIC);
+registerMooseObject("newtApp", RemainderEtaIC);
 
 template <>
 InputParameters
