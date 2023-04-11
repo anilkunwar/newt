@@ -6,28 +6,19 @@
 //*
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
-#ifndef NEWTAPP_H
-#define NEWTAPP_H
+
+#pragma once
 
 #include "MooseApp.h"
-
-class newtApp;
-
-template <>
-InputParameters validParams<newtApp>();
 
 class newtApp : public MooseApp
 {
 public:
+  static InputParameters validParams();
+
   newtApp(InputParameters parameters);
   virtual ~newtApp();
 
   static void registerApps();
-  static void registerObjects(Factory & factory);
-  static void registerObjectDepends(Factory & factory);
-  static void associateSyntax(Syntax & syntax, ActionFactory & action_factory);
-  static void associateSyntaxDepends(Syntax & syntax, ActionFactory & action_factory);
-  static void registerExecFlags(Factory & factory);
+  static void registerAll(Factory & f, ActionFactory & af, Syntax & s);
 };
-
-#endif /* NEWTAPP_H */
