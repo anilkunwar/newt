@@ -73,6 +73,6 @@ FunctionPathGaussianHeatSource::computeQpProperties()
   _volumetric_heat[_qp] = 2.0 * _P * _eta * _f /
                           (libMesh::pi * std::pow(_r0, 2.0)) *
                           std::exp(-(2.0 * std::pow(x - x_t, 2.0) / std::pow(_r0, 2.0) +
-                                     2.0 * std::pow(y - y_t, 2.0) / std::pow(_r0, 2.0) +
+                                     2.0 * std::pow(y - y_t, 2.0) / std::pow(_r0, 2.0) -
                                      _s*_eta *z));
 }
