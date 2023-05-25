@@ -15,7 +15,7 @@ InputParameters
 CompositeConductivityTensor::validParams()
 {
   InputParameters params = CompositeTensorBase<RealTensorValue, Material>::validParams();
-  params.addClassDescription("Assemble a mobility tensor from multiple tensor contributions "
+  params.addClassDescription("Assemble a condcutivity tensor from multiple tensor contributions "
                              "weighted by material properties");
   params.addRequiredParam<MaterialPropertyName>("cond_name",
                                                 "Name of the conductivity tensor property to generate");
